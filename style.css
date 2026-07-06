@@ -1,0 +1,274 @@
+/* ============================================================
+   Divyanshi Rana — Portfolio
+   Palette: paper/sand ground, moss (growth+support), clay (warmth),
+   dusk (trust/data). Signature motif: overlapping "support circles",
+   reused as hero rings, section eyebrows, and timeline nodes.
+   Type: Fraunces (display), Karla (body), IBM Plex Mono (data/dates)
+   ============================================================ */
+
+:root{
+  --paper: #ECE7D9;
+  --paper-deep: #E0D9C4;
+  --ink: #262A22;
+  --ink-soft: #4A4E42;
+  --moss: #57654A;
+  --moss-deep: #3D4834;
+  --clay: #A15D42;
+  --dusk: #5F7385;
+  --line: rgba(38,42,34,0.16);
+  --line-strong: rgba(38,42,34,0.3);
+  --radius: 4px;
+  --max: 920px;
+}
+
+*,*::before,*::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+
+body{
+  margin:0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Karla', sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* subtle paper texture: faint dot grid, quiet and warm */
+body::before{
+  content:"";
+  position: fixed; inset:0;
+  background-image: radial-gradient(circle, rgba(38,42,34,0.06) 1px, transparent 1.3px);
+  background-size: 22px 22px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grain-overlay{
+  position:fixed; inset:0; pointer-events:none; z-index: 1;
+  background-image: repeating-linear-gradient(0deg, rgba(38,42,34,0.015) 0px, transparent 1px, transparent 2px);
+}
+
+main, header, footer{ position: relative; z-index: 2; }
+
+h1,h2,h3,h4{
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 .4em;
+  letter-spacing: -0.01em;
+}
+em{ font-style: italic; color: var(--moss-deep); }
+strong{ font-weight: 700; }
+a{ color: var(--moss-deep); }
+
+::selection{ background: var(--moss); color: var(--paper); }
+:focus-visible{ outline: 2px solid var(--clay); outline-offset: 3px; }
+
+/* ---------- Header / Nav ---------- */
+.site-header{
+  position: sticky; top:0; z-index: 10;
+  display:flex; align-items:center; justify-content: space-between;
+  padding: 18px 6vw;
+  background: rgba(236,231,217,0.88);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+  font-family:'Fraunces', serif; font-weight:600; font-size: 1.05rem;
+  text-decoration:none; color: var(--ink);
+}
+.brand-mark{ width: 34px; height: 20px; flex-shrink:0; }
+.site-nav{ display:flex; align-items:center; gap: 26px; }
+.site-nav a{
+  text-decoration:none; color: var(--ink-soft); font-size: .92rem; font-weight: 600;
+  position: relative; padding: 4px 0;
+}
+.site-nav a:hover{ color: var(--moss-deep); }
+.site-nav a.nav-cta{
+  background: var(--moss); color: var(--paper); padding: 8px 16px; border-radius: 999px;
+}
+.site-nav a.nav-cta:hover{ background: var(--moss-deep); color:var(--paper); }
+
+.nav-toggle{
+  display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;
+}
+.nav-toggle span{ width: 22px; height: 2px; background: var(--ink); display:block; }
+
+/* ---------- Eyebrow / signature mark ---------- */
+.eyebrow{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .78rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--moss-deep);
+  display:flex; align-items:center; gap:8px; margin-bottom: .9em;
+}
+.eyebrow .mark{ font-family: sans-serif; letter-spacing: -3px; color: var(--clay); font-size: 1rem; }
+
+/* ---------- Hero ---------- */
+.hero{
+  position: relative; overflow: hidden;
+  padding: 9vh 6vw 8vh;
+  min-height: 78vh; display:flex; align-items:center;
+  border-bottom: 1px solid var(--line);
+}
+.hero-rings{ position:absolute; right: -8%; top: 50%; transform: translateY(-50%); width: min(48vw, 560px); opacity: .9; }
+.hero-rings svg{ width:100%; height:auto; }
+.ring{ fill:none; stroke-width: 1.6; }
+.ring-1{ stroke: var(--moss); opacity:.55; }
+.ring-2{ stroke: var(--clay); opacity:.45; }
+.ring-3{ stroke: var(--dusk); opacity:.5; }
+.ring-4{ stroke: var(--moss-deep); opacity:.35; }
+
+.hero-inner{ max-width: 620px; position: relative; }
+.hero-inner h1{ font-size: clamp(2.6rem, 6vw, 4.4rem); line-height: .98; margin-bottom: .25em; }
+.hero-lede{ font-size: 1.15rem; color: var(--ink-soft); max-width: 46ch; }
+.hero-actions{ display:flex; gap: 14px; margin: 28px 0 40px; flex-wrap: wrap; }
+
+.btn{
+  font-family:'Karla',sans-serif; font-weight:700; font-size: .95rem;
+  padding: 12px 22px; border-radius: 999px; text-decoration:none; display:inline-block;
+  border: 1.5px solid transparent; transition: transform .15s ease;
+}
+.btn:hover{ transform: translateY(-1px); }
+.btn-primary{ background: var(--moss); color: var(--paper); }
+.btn-primary:hover{ background: var(--moss-deep); }
+.btn-ghost{ border-color: var(--line-strong); color: var(--ink); }
+.btn-ghost:hover{ border-color: var(--clay); color: var(--clay); }
+
+.hero-stats{ display:flex; gap: 34px; flex-wrap:wrap; }
+.hero-stats div{ display:flex; flex-direction:column; }
+.hero-stats span{ font-family:'Fraunces',serif; font-size: 1.8rem; color: var(--clay); font-weight:600; }
+.hero-stats small{ font-family:'IBM Plex Mono',monospace; font-size:.72rem; color: var(--ink-soft); max-width: 14ch; }
+
+/* ---------- Sections ---------- */
+.section{
+  max-width: var(--max); margin: 0 auto; padding: 9vh 6vw;
+  border-bottom: 1px solid var(--line);
+}
+.section-head{ max-width: 62ch; margin-bottom: 3.2rem; }
+.section-head h2{ font-size: clamp(1.6rem, 3.4vw, 2.3rem); }
+.section-sub{ color: var(--ink-soft); }
+.sub-heading{
+  font-family:'IBM Plex Mono', monospace; font-size:.8rem; text-transform: uppercase;
+  letter-spacing:.08em; color: var(--dusk); margin: 2.2rem 0 1.2rem; font-weight:500;
+}
+.sub-heading:first-child{ margin-top:0; }
+
+.about-grid{ display:grid; gap: 1.3rem; max-width: 68ch; }
+.about-text{ margin:0; }
+.about-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top: .6rem; }
+.about-tags span{
+  font-family:'IBM Plex Mono',monospace; font-size:.75rem; padding: 5px 12px;
+  border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink-soft);
+}
+
+/* ---------- Research / publications ---------- */
+.section-feature{ background: var(--paper-deep); }
+.pub-list{ list-style:none; margin:0 0 2.5rem; padding:0; display:grid; gap: 1rem; }
+.pub-card{
+  display:flex; gap: 1.4rem; padding: 1.3rem 1.5rem; background: var(--paper);
+  border: 1px solid var(--line); border-radius: var(--radius); border-left: 3px solid var(--moss);
+}
+.pub-year{ font-family:'IBM Plex Mono',monospace; font-weight:500; color: var(--clay); flex-shrink:0; width: 3.4em; }
+.pub-body h4{ font-size: 1.05rem; margin-bottom: .3em; }
+.pub-meta{ margin: 0 0 .2em; color: var(--ink-soft); font-size: .92rem; }
+.pub-doi{ margin:0; font-family:'IBM Plex Mono',monospace; font-size: .74rem; color: var(--dusk); }
+
+/* ---------- Timeline (reuses support-circle nodes) ---------- */
+.timeline{ list-style:none; margin:0; padding:0; position:relative; }
+.timeline::before{
+  content:""; position:absolute; left: 6px; top: 8px; bottom: 8px; width: 2px;
+  background: var(--line-strong);
+}
+.timeline li{ position:relative; padding-left: 34px; margin-bottom: 1.9rem; }
+.timeline li:last-child{ margin-bottom:0; }
+.node{
+  position:absolute; left:0; top: 4px; width: 14px; height:14px; border-radius:50%;
+  background: var(--paper); border: 2.5px solid var(--moss);
+}
+.timeline-wide .node{ border-color: var(--clay); }
+.node-current{ background: var(--clay); border-color: var(--clay); box-shadow: 0 0 0 4px rgba(161,93,66,0.18); }
+.timeline-date{
+  font-family:'IBM Plex Mono',monospace; font-size:.78rem; color: var(--dusk); margin: 0 0 .3em; text-transform: uppercase; letter-spacing:.03em;
+}
+.timeline-body h4{ font-size: 1.08rem; margin-bottom:.25em; }
+.timeline-org{ font-weight:700; color: var(--moss-deep); margin: 0 0 .3em; }
+.timeline-body p:last-child{ margin-bottom:0; color: var(--ink-soft); }
+
+/* ---------- Outreach ---------- */
+.outreach-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 1.1rem; }
+.outreach-card{
+  padding: 1.3rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper);
+  border-top: 3px solid var(--dusk);
+}
+.outreach-card h4{ font-size: 1.02rem; margin-bottom:.35em; }
+
+/* ---------- Skills ---------- */
+.skills-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+.chip-row{ display:flex; flex-wrap:wrap; gap: 8px; }
+.chip{
+  font-size:.85rem; padding: 7px 14px; border-radius: 999px; background: var(--paper-deep);
+  border: 1px solid var(--line); color: var(--ink-soft);
+}
+.chip-mono{ font-family:'IBM Plex Mono',monospace; font-size:.78rem; background: transparent; border-color: var(--line-strong); }
+
+/* ---------- Achievements / medals ---------- */
+.ed-grid{ display:grid; grid-template-columns: 1fr 1.15fr; gap: 3rem; align-items:start; }
+.medal-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.medal-card{ display:flex; gap: .8rem; align-items:flex-start; padding: .9rem; border: 1px solid var(--line); border-radius: var(--radius); }
+.medal-icon{ width: 34px; height:34px; flex-shrink:0; }
+.medal-card p{ margin:0; font-size: .88rem; }
+
+/* ---------- Courses ---------- */
+.course-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1rem; }
+.course-card{
+  display:block; padding: 1.2rem; border: 1px solid var(--line); border-radius: var(--radius);
+  text-decoration:none; color: var(--ink); background: var(--paper);
+  border-bottom: 3px solid var(--moss);
+}
+.course-card:hover{ border-bottom-color: var(--clay); }
+.course-card h4{ font-size: 1rem; margin-bottom:.3em; }
+
+/* ---------- Contact ---------- */
+.section-contact{ position:relative; overflow:hidden; border-bottom:none; }
+.contact-rings{ position:absolute; left:50%; top:0; transform: translateX(-50%); width: min(90vw,700px); opacity:.5; pointer-events:none; }
+.contact-rings svg{ width:100%; }
+.contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 3rem; position:relative; }
+.contact-links{ display:flex; flex-direction:column; gap: .9rem; }
+.contact-links a{
+  font-family:'Fraunces',serif; font-size:1.3rem; text-decoration:none; color: var(--ink);
+  border-bottom: 1px solid var(--line-strong); padding-bottom: 6px; width: fit-content;
+}
+.contact-links a:hover{ color: var(--clay); border-color: var(--clay); }
+.reference-card{ padding: 1rem 0; border-top: 1px solid var(--line); }
+.reference-card:first-of-type{ border-top:none; padding-top:0; }
+.reference-card p{ margin: 0 0 .2em; }
+
+/* ---------- Footer ---------- */
+.site-footer{
+  display:flex; align-items:center; justify-content:center; gap: 12px;
+  padding: 2.4rem 6vw; color: var(--ink-soft); font-size:.85rem;
+}
+.site-footer .brand-mark{ width:26px; height:16px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 780px){
+  .site-nav{
+    position:absolute; top: 100%; left:0; right:0; background: var(--paper);
+    flex-direction:column; align-items:flex-start; padding: 20px 6vw; gap: 16px;
+    border-bottom: 1px solid var(--line); display:none;
+  }
+  .site-nav.open{ display:flex; }
+  .nav-toggle{ display:flex; }
+  .hero-rings{ opacity:.5; width: 70vw; right:-20%; }
+  .about-grid, .skills-grid, .ed-grid, .contact-grid{ grid-template-columns: 1fr; }
+  .medal-grid{ grid-template-columns: 1fr; }
+  .hero{ min-height: auto; padding-top: 12vh; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .btn{ transition:none; }
+}
